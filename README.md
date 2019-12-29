@@ -1,1 +1,1 @@
-# Algorithm-Study with Baek-Jun, Programmers
+# Algorithm-Study with BOJ, Programmers
