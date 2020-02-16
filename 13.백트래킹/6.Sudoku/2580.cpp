@@ -13,6 +13,7 @@ bool Row(){
 bool Col() {
     
 }
+
 void DFS(int n){
     if(n == cnt){
         return;
