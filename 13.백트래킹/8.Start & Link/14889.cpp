@@ -1,32 +1,32 @@
 #include<iostream>
-#include<vector>
+#define MAX 21
 using namespace std;
-
 int N;
-vector<int> v;
-bool Check[6];
-void Print(){
-    for(int i = 0 ; i < v.size(); i++){
-        cout << v[i] << " ";
-    }
-    cout<<'\n';
+int arr[MAX][MAX];
+
+void SetTeam(){
+
 }
-void DFS(int idx,int cnt) {
-    if(cnt == N/2) {
-        Print();
+void DFS(int x, int y) {
+    SetTeam();
+    if(cnt == N){
         return;
     }
-    for(int i = idx ; i <= N; i++) {
-        if(Check[i])
-            continue;
-        Check[i] = true;
-        v.push_back(i);
-        DFS(i,cnt + 1);
-        v.pop_back();
-        Check[i] = false;
+    for(int i =0  ; i < N; i++) {
+        for(int j = 0 ; j < N; j++) {
+            if(i == j ){
+                continue;
+            }
+            
+        }
     }
 }
 int main() {
     cin >> N;
-    DFS(1,0);
+    for(int i = 1 ; i <=N; i++) {
+        for(int j = 1; j <= N; j++) {
+            cin >> arr[i][j];
+        }
+    }
+    DFS(0,0);
 }
