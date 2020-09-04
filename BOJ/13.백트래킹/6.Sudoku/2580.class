@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class Main {
+    static int MAX = 9;
+
+    int[][] map = new int[10][10];
+    boolean[][] row = new boolean[10][10];
+    boolean[][] col = new boolean[10][10];
+    boolean[][] square = new boolean[10][10];
+
+    public void input()
+    {
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < MAX; i++) {
+            for (int j = 0; j < MAX; j++) {
+                map[i][j] = sc.nextInt();
+                if (map[i][j] != 0) {
+                    row[i][map[i][j]] = true;
+                    col[j][map[i][j]] = true;
+                    square[(i / 3 * 3) + (j / 3)][map[i][j]] = true;
+                }
+            }
+        }
+    }
+
+    public void printMap()
+    {
+        for (int i = 0; i < MAX; i++) {
+            for (int j = 0; j < MAX; j++) {
+                System.out.print(map[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void DFS(int n)
+    {
+        int x = n / 9;
+        int y = n % 9;
+
+        if (n == 81)
+        {
+            printMap();
+            System.exit(0);
+        }
+        if(map[x][y] == 0)
+        {
+                for (int i = 1; i <= 9; i++) {
+                    if (row[x][i] == false && col[y][i] == false && square[(x / 3 * 3) + (y / 3)][i] == false) {
+                        map[x][y] = i;
+                        row[x][i] = true;
+                        col[y][i] = true;
+                        square[(x / 3 * 3) + (y / 3)][i] = true;
+                        DFS(n + 1);
+                        map[x][y] = 0;
+                        row[x][i] = false;
+                        col[y][i] = false;
+                        square[(x / 3 * 3) + (y / 3)][i] = false;
+                    }
+                }
+        }
+        else
+            DFS(n + 1);
+    }
+
+    public static void main(String[] args) {
+        Main m = new Main();
+        m.input();
+        m.DFS(0);
+    }
+}
